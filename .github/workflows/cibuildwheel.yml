@@ -29,9 +29,14 @@ jobs:
 
       - name: Install
         run: |
-          pip install --force-reinstall -e .[tests]
+          python -m pip install --force-reinstall -e .[tests]
 
       - name: Build wheels
+        run: |
+          python -m pip wheel -w wheeldir
+          ls -l wheeldir
+
+      - name: Run CIBuildWheel
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: "cp38-* cp310-*"
