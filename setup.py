@@ -10,6 +10,7 @@ extras_require = {
         'click==7.1.2',
         'pytest==4.6.11',
         'six==1.16.0',
+        'py-postgresql',
     ]
 }
 
