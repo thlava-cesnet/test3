@@ -42,7 +42,7 @@ jobs:
 
       - name: Build wheels
         run: |
-          python -m pip setup.py sdist bdist_wheel
+          python setup.py sdist bdist_wheel
           ls -l dist
 
       - name: Run CIBuildWheel
