@@ -20,7 +20,8 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        os: [ubuntu-20.04, windows-2019, maxOS-10.15]
+#        os: [ubuntu-20.04, windows-2019, maxOS-10.15]
+        os: [ubuntu-20.04]
 #    env:
 #      INDEX: docs/index.md
     steps:
