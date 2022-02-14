@@ -5,24 +5,23 @@ import os
 
 from setuptools import find_packages, setup
 
-from Cython.Build import cythonize
+extras_require = {
+    'tests': [
+        'click==7.1.2',
+        'pytest==4.6.11',
+        'six==1.16.0',
+    ]
+}
 
-EXCLUDE_FILES = [
-  'app/main.py'
+setup_requires = [
+    'pytest-runner>=3.0.0,<5',
 ]
 
-def get_ext_paths(root_dir, exclude_files):
-    """get filepaths for compilation"""
-    paths = []
-    for root, dirs, files in os.walk(root_dir):
-        for filename in files:
-            if os.path.splitext(filename)[1] != '.py':
-                continue
-            file_path = os.path.join(root, filename)
-            if file_path in exclude_files:
-                continue
-            paths.append(file_path)
-    return paths
+install_requires = [
+    'click==7.1.2',
+    'six==1.16.0',
+    'sqlalchemy==1.3.24',
+]
 
 # Get the version string. Cannot be done with import!
 g = {}
@@ -36,9 +35,5 @@ setup(
     entry_points={
         'console_scripts': ['app=app.main:go'],
     },
-    packages=find_packages(),
-    ext_modules=cythonize(
-        get_ext_paths('app', EXCLUDE_FILES),
-        compiler_directives={ 'language_level': 3 }
-    )
+    packages=find_packages()
 )
