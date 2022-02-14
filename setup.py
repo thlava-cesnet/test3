@@ -21,6 +21,7 @@ install_requires = [
     'click==7.1.2',
     'six==1.16.0',
     'sqlalchemy==1.3.24',
+    'py-postgresql',
 ]
 
 # Get the version string. Cannot be done with import!
