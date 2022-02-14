@@ -34,6 +34,10 @@ with open(os.path.join('app', 'version.py'), 'rt') as fp:
 setup(
     name='app',
     version=version,
+    extras_require=extras_require,
+    install_requires=install_requires,
+    setup_requires=setup_requires,
+    tests_require=extras_require['tests'],
     entry_points={
         'console_scripts': ['app=app.main:go'],
     },
