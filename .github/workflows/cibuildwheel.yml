@@ -45,19 +45,20 @@ jobs:
         run: |
           python setup.py sdist bdist_wheel
           pip freeze > reqs.txt
+          cat reqs.txt
           python -m pip wheel -r reqs.txt
           ls -l dist
 
-#      - name: Run CIBuildWheel
-#        run: python -m cibuildwheel --output-dir wheelhouse
-#        env:
-#          CIBW_BUILD: "cp38-* cp310-*"
-#          CIBW_SKIP: "*-musllinux-*"
-#          CIBW_ARCHS: auto64
-#          CIBW_BUILD_VERBOSITY: 1
+      - name: Run CIBuildWheel
+        run: python -m cibuildwheel --output-dir wheelhouse
+        env:
+          CIBW_BUILD: "cp38-* cp310-*"
+          CIBW_SKIP: "*-musllinux-*"
+          CIBW_ARCHS: auto64
+          CIBW_BUILD_VERBOSITY: 1
         
-#      - name: Debug
-#        run: ls -l wheelhouse
+      - name: Debug
+        run: ls -l wheelhouse
 
 #      - name: Debug
 #        run: app
