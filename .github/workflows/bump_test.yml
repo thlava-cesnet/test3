@@ -1,0 +1,32 @@
+
+name: bump test
+
+on:
+#  schedule:
+    # every sat. at 7:39 GMT
+#    - cron: '39 7 * * 6'
+    # debug run
+    #- cron: '10 17 * * *'
+    #- cron: '50 7 * * 5'
+  workflow_dispatch:
+
+jobs:
+  bump:
+    name: Bump version
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions-ecosystem/action-get-latest-tag@v1
+        id: get-latest-tag
+
+      - uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          level: minor
+          
+      - name: debug
+        run: |
+          echo "old version: ${{ steps.get-latest-tag.outputs.tag }}"
+          echo "new version: ${{ steps.bump-semver.outputs.new_version }}"
