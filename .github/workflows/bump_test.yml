@@ -21,12 +21,21 @@ jobs:
         id: get-latest-tag
 
       - uses: actions-ecosystem/action-bump-semver@v1
+        # https://github.com/actions-ecosystem/action-bump-semver
+        # https://github.com/python-semver/python-semver
         id: bump-semver
         with:
-          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+#          current_version: ${{ steps.get-latest-tag.outputs.tag }}
+          current_version: v1.0.0a1
           level: minor
           
       - name: debug
         run: |
           echo "old version: ${{ steps.get-latest-tag.outputs.tag }}"
           echo "new version: ${{ steps.bump-semver.outputs.new_version }}"
+
+#      - uses: actions-ecosystem/action-push-tag@v1
+#					# https://github.com/actions-ecosystem/action-push-tag
+#        with:
+#          tag: ${{ steps.bump-semver.outputs.new_version }}
+#          message: '${{ steps.bump-semver.outputs.new_version }}: PR #${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}'
